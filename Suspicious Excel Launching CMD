@@ -1,0 +1,20 @@
+title: Excel Spawning CMD or PowerShell
+id: excel-spawn-cmd
+description: Detects when Microsoft Excel spawns suspicious child processes
+status: experimental
+logsource:
+  product: windows
+  service: sysmon
+  category: process_creation
+detection:
+  parent:
+    ParentImage|endswith: '\EXCEL.EXE'
+  child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+  condition: parent and child
+level: high
+tags:
+  - attack.execution
+  - attack.t1203
