@@ -1,0 +1,9 @@
+Rule Name: Admin Login After Office Hours
+Rule Type: Event
+Conditions:
+  - Event Name equals "Successful Login"
+  - User Role equals "Administrator"
+  - Event Time is between 00:00 - 06:00
+Response:
+  - Generate an offense
+  - Add note: "Possible suspicious admin login during non-business hours"
